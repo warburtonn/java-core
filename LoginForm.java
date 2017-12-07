@@ -1,4 +1,4 @@
-package com.diplom;
+package com.login;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
