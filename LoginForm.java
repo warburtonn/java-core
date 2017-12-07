@@ -14,9 +14,9 @@ import java.sql.*;
     private JPanel LoginFrame;
     private JTextField nameField;
     private JLabel jLabelLogin;
-    private static final String NAME="root";
-    private static final String PASSWORD = "root";
-    private static final String URL = "jdbc:mysql://localhost:3306/diplom";
+    private static final String NAME=""; //root-name
+    private static final String PASSWORD = "root"; //password root DB
+    private static final String URL = "jdbc:mysql://localhost:3306/diplom"; //db url from mysql: jdbc:mysql://ip/localhost:port(3306)/dbName
 
     //public mainWindow()
         {
