@@ -32,7 +32,7 @@ import java.sql.*;
                 try {
                     Connection connection = DriverManager.getConnection(URL, NAME, PASSWORD);
                     Statement statementLogin = connection.createStatement();
-                    ResultSet resultLogin = statementLogin.executeQuery("SELECT * FROM diplom.userdatabase");
+                    ResultSet resultLogin = statementLogin.executeQuery("SELECT * FROM .userdatabase");
                     while (resultLogin.next()) {
                         if (resultLogin.getString(2).equals(nameField.getText()) && resultLogin.getString(3).equals(passField.getText()))
                             flag = 0;
