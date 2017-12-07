@@ -35,11 +35,8 @@ import java.sql.*;
                     ResultSet resultLogin = statementLogin.executeQuery("SELECT * FROM diplom.userdatabase");
                     while (resultLogin.next()) {
                         if (resultLogin.getString(2).equals(nameField.getText()) && resultLogin.getString(3).equals(passField.getText()))
-
                             flag = 0;
                         //break;
-
-
                         if (flag == 0) {
                             jLabelLogin.setText("Login succesful");
                         } else
@@ -53,12 +50,12 @@ import java.sql.*;
     }
 
     public static void main(String[] args) {
-        JFrame panel = new JFrame("Авторизация");
-        panel.setSize(300, 180);
+        JFrame panel = new JFrame("Авторизация"); //Login window title
+        panel.setSize(300, 180); //resolution Login Window
         panel.setContentPane(new LoginForm().LoginFrame);
         panel.setLocationRelativeTo(null);
-        panel.setVisible(true);
-        panel.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        panel.setVisible(true); //set Is this window visible ? (Yes)
+        panel.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Closing window after press 'x'
 
     }
 }
