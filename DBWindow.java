@@ -19,7 +19,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * Created by Сергей on 08.12.2017.
  */
 
-
 public class DBWindow {
 
     static final String NAME = " ";
