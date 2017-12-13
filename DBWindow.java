@@ -15,7 +15,6 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 /**
  * Created by Сергей on 08.12.2017.
  */
@@ -23,10 +22,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class DBWindow {
 
-    static final String NAME = "root";
-    static final String PASS = "root";
-    static final String URL = "jdbc:mysql://localhost:3306/diplom";
-    static final String DRIVER = "com.mysql.jdbc.Driver";
+    static final String NAME = " ";
+    static final String PASS = " ";
+    static final String URL = " ";
+    static final String DRIVER = " ";
 
     Connection conn = null;
     Statement stm = null;
@@ -60,10 +59,9 @@ public class DBWindow {
             conn = DriverManager.getConnection(URL,NAME,PASS);
 
             //STEP 4: Execute a query
-            //System.out.println("Creating statement...");
             stmt = conn.createStatement();
             String sql;
-            sql = "SELECT id, vozdux_max, vozdux_min FROM diplom.metrologydb";
+            sql = "SELECT * FROM "; //select coloumn your table FROM .tablename
             ResultSet rs = stmt.executeQuery(sql);
             rs.close();
             stmt.close();
@@ -89,14 +87,13 @@ public class DBWindow {
             }//end finally try
         }//end try
         System.out.println("Goodbye!");
-
-        JFrame panel = new JFrame("Метеорологические данные: ");
-        panel.setSize(1400, 400);
+        //Creating Main Window
+        JFrame panel = new JFrame("Метеорологические данные: "); //Name of JFrame
+        panel.setSize(1400, 400); //resolution Main Window
         panel.setContentPane(new DBWindow().DBMain);
-        panel.setLocationRelativeTo(null);
-        panel.setVisible(true);
-        panel.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+        panel.setLocationRelativeTo(null); //Window position in center
+        panel.setVisible(true); //Is this window visible ? (true - 'yes' / false - 'no')
+        panel.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //Close window and close program when user press 'x'
     }//end main
 
     public DBWindow() {
@@ -108,7 +105,7 @@ public class DBWindow {
 
                 try {
                     Connection connection = DriverManager.getConnection(URL, NAME, PASS);
-                    String query = "SELECT * FROM diplom.metrologydb";
+                    String query = "SELECT * FROM /*enter your tablename*/";
                     PreparedStatement pst =connection.prepareStatement(query);
                     ResultSet res= pst.executeQuery();
                     table1.setModel(DbUtils.resultSetToTableModel(res));
@@ -125,21 +122,19 @@ public class DBWindow {
 
                 try {
                     Class.forName("com.mysql.jdbc.Driver");
-                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/diplom", "root", "root");
+                    Connection con = DriverManager.getConnection("root-name", "root-password", "url");
                     Statement stmt = con.createStatement();
-                    ResultSet resultSet = stmt.executeQuery("select * from diplom.metrologydb");
+                    ResultSet resultSet = stmt.executeQuery("select * from ");
                     XSSFWorkbook workbook = new XSSFWorkbook();
                     XSSFSheet spreadsheet = workbook.createSheet("Export data");
                     XSSFRow row = spreadsheet.createRow(1);
                     XSSFCell cell;
-
-
+                    //Binding a column and name to an Excel file
                     cell = row.createCell(0);
                     cell.setCellValue("№");
 
                     cell = row.createCell(1);
                     cell.setCellValue("Дата");
-
 
                     cell = row.createCell(2);
                     cell.setCellValue("Воздух максимальное");
@@ -196,11 +191,9 @@ public class DBWindow {
                     cell = row.createCell(19);
                     cell.setCellValue("Осадки сутки");
 
-
-                    int i = 3;
+                    int i = 3; //1-3 indent three cells from the beginning
                     while (resultSet.next()) {
                         row = spreadsheet.createRow(i);
-
 
                         cell = row.createCell(0);
                         cell.setCellValue(resultSet.getInt("id"));
@@ -264,10 +257,10 @@ public class DBWindow {
 
                         i++;
                     }
-                    FileOutputStream out = new FileOutputStream(new File("C://Exel/database_new.xlsx"));
+                    FileOutputStream out = new FileOutputStream(new File("C://Exel/database_new.xlsx")); //Path to your .xls file
                     workbook.write(out);
                     out.close();
-                    System.out.println("File Successfully created");
+                    System.out.println("File Successfully created"); //Successful export message
                     con.close();
                 } catch (Exception e1) {
                     System.out.println(e1);
@@ -280,4 +273,4 @@ public class DBWindow {
     private void createUIComponents() {
         // TODO: place custom component creation code here
     }
-}//end FirstExample
+}//end
