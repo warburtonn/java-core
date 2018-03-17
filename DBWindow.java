@@ -168,7 +168,6 @@ public class DBWindow {
                     cell = row.createCell(12);
                     cell.setCellValue("Дифицит влажности среднее");
 
-
                     cell = row.createCell(13);
                     cell.setCellValue("Атмосферные явления");
 
@@ -256,6 +255,7 @@ public class DBWindow {
 
                         i++;
                     }
+                    //Export your Data from MySQL database to .xls file 
                     FileOutputStream out = new FileOutputStream(new File("C://Exel/database_new.xlsx")); //Path to your .xls file
                     workbook.write(out);
                     out.close();
